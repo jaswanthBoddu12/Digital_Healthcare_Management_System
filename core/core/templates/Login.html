@@ -1,0 +1,125 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<style>
+     .login-box{
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 12%;
+        color: black;
+        
+
+    }
+        .chat-container .login-box h3{
+            display: flex;
+            justify-content: center;
+            color: black;
+        }
+ .login-box .login-container{
+    background-image:linear-gradient(rgb(105, 209, 247),rgb(234, 240, 242));
+    width: 25%;
+    min-width: 200px;
+    min-height: 220px;
+    height: fit-content;
+    display:flex;
+    flex-direction:column;
+    padding: 10px;
+    color: black;
+    overflow: hidden;
+
+ }
+.login-box .login-container label{
+    margin-bottom: 20%;
+    color: black;
+ }
+
+ .login-box .login-container input{
+    margin-top: 3%;
+    margin-bottom: 5%;
+    padding: 8px 8px 2px 8px;
+    border: none;
+    border-bottom: solid black 1px;
+    color: black;
+    width: 80%;
+    background-color: transparent;
+ }
+
+ .login-box .login-container button{
+    margin-top: 8%;
+    margin-bottom: auto;
+    border: 1px black solid;
+    background-color: transparent;
+    padding: 5px;
+    margin-right: 50%;
+    color: black;
+    margin-left: 50%;
+    transform: translate(-50%,-50%);
+ }
+
+ .login-box .slide-login{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        left: 0;
+        color: black;
+        
+ }
+.login-box .login-container .signup-slide{
+    display: none;
+}
+</style>
+<div class="login-box">
+    <div class="login-container">
+        <div class="login-slide">
+            <form method="POST" action="{% url 'managementlogin'%}" >
+                {% csrf_token %}
+                <h2>Management-login</h2>
+                <label>Username :</label><br>
+                <input name="username" type="text" required><br>
+                <label>Password :</label><br>
+                <input name="password" type="password"  required><br>
+                <button type="submit" >submit</button><br>
+            </form>
+        </div>
+        <div class="signup-slide">
+            <form method="POST" action="{% url 'patientlogin' %}">
+                {% csrf_token %}
+                <h2>Patient-login</h2>
+                <label>Username :</label><br>
+                <input name="username" type="text"  required><br>
+                <label>Password :</label><br>
+                <input name="password" type="password" class="cpassword" id="cpassword"  required><br>
+                <button type="submit" id="signup-submit">submit</button><br>
+            </form>
+        </div>
+            <b>{{error}}</b>
+        <input type="radio" class="slide-login" id="slide-login" name="check">
+        
+        <input type="radio" class="slide-login"id="slide-signup" name="check">
+    </div>
+
+    
+
+</div>
+<script>
+    const rd1=document.querySelector("#slide-login");
+    const rd2=document.querySelector("#slide-signup");
+    const box1=document.querySelector(".login-slide");
+    const box2=document.querySelector(".signup-slide");
+    rd1.addEventListener('click',function(){
+        box2.style.display="none";
+        box1.style.display="block";
+        box2.style.marginLeft="100%";
+    })
+    rd2.addEventListener('click',function(){
+        box1.style.display="none";
+        box2.style.display="block";
+        box2.style.marginLeft="0%";
+    })
+</script>
+
+{% endblock content %}

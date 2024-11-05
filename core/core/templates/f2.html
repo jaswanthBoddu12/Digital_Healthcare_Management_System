@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    #all-reports{
+        width: 80%;
+        height: 100vh;
+        background-color: rgb(215, 240, 250);
+        padding: 20px;
+    }
+    #ireport{
+        border-bottom: 1px black solid;
+    }
+    span{
+        margin: 2px;
+    }
+    form{
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+</style>
+   <center> <h1> All Records</h1></center>
+   <div id="all-reports">
+
+        {% for i in reports %}
+        <div id="ireport">
+            <span>Name:- {{i.patientname}}</span><br>
+            <span>Gender:- {{i.gender}}</span><br>
+            <span>Dob:- {{i.dob}}</span><br>
+            <span>BloodGroup:- {{i.bloodgroup}}</span><br>
+            <span>Prescription:- {{i.prescription}}</span><br>
+            <span>Doctorname:- {{i.Doctorname}}</span><br>
+            <span>Recordid:- {{i.Record_id}}</span><br>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock content%}
